@@ -2,6 +2,17 @@
 
 @start
 
+.clear-flag i-dont-exist
+.set-flag i-exist
+.clear-flag i-exist
+
+.on-flag-go-to i-exist @IExist
+.write I don't exist!
+.go-to @Done
+@IExist
+.write I exist!
+@Done
+
 .write I write text! 
 
 .write-line I write a line!

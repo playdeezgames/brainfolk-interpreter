@@ -2,6 +2,7 @@
     Private lines As New List(Of String)
     Private currentLine As Integer
     Private labels As New Dictionary(Of String, Integer)
+    Private flags As New HashSet(Of String)
     Private running As Boolean
     Public Sub New(filename As String)
         lines.AddRange(File.ReadAllLines(filename))
@@ -40,30 +41,61 @@
     Const PauseCommand = ".pause"
     Const GoToCommand = ".go-to"
     Const ConfirmCommand = ".confirm"
+    Const SetFlagCommand = ".set-flag"
+    Const ClearFlagCommand = ".clear-flag"
+    Const OnFlagGotoCommand = ".on-flag-go-to"
+
+    Private Sub NextLine()
+        currentLine += 1
+    End Sub
+
+    Private Sub GoToLabel(body As String)
+        currentLine = labels(body.Trim)
+    End Sub
 
     Private Sub DoCommand(command As String, body As String)
         Select Case command
             Case ClearCommand
                 AnsiConsole.Clear()
-                currentLine += 1
+                NextLine()
             Case WriteCommand
                 AnsiConsole.Markup(body)
-                currentLine += 1
+                NextLine()
             Case WriteLineCommand
                 AnsiConsole.MarkupLine(body)
-                currentLine += 1
+                NextLine()
             Case StopCommand
                 running = False
             Case PauseCommand
                 Console.ReadKey(True)
-                currentLine += 1
+                NextLine()
             Case GoToCommand
-                currentLine = labels(body.Trim)
+                GoToLabel(body)
             Case ConfirmCommand
                 If DoConfirm() Then
-                    currentLine = labels(body.Trim)
+                    GoToLabel(body)
+                Else
+                    NextLine()
                 End If
-                currentLine += 1
+            Case SetFlagCommand
+                flags.Add(body.Trim)
+                NextLine()
+            Case ClearFlagCommand
+                flags.Remove(body.Trim)
+                NextLine()
+            Case OnFlagGotoCommand
+                Dim tokens = body.Split(" "c, StringSplitOptions.RemoveEmptyEntries Or StringSplitOptions.TrimEntries)
+                If flags.Contains(tokens(1)) Then
+                    GoToLabel(tokens(2))
+                Else
+                    If tokens.Count > 3 Then
+                        GoToLabel(tokens(3))
+                    Else
+                        NextLine()
+                    End If
+                End If
+            Case Else
+                Throw New NotImplementedException(command)
         End Select
     End Sub
 
