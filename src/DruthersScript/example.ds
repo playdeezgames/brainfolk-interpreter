@@ -1,33 +1,30 @@
-﻿#I am a comment
+﻿@start
 
-@start
+.on-flag-go-to flag @FlagSet @FlagClear
 
-.clear-flag i-dont-exist
-.set-flag i-exist
-.clear-flag i-exist
+@FlagSet
 
-.on-flag-go-to i-exist @IExist
-.write I don't exist!
-.go-to @Done
-@IExist
-.write I exist!
-@Done
+.write-line The flag is set.
+.go-to @Prompt
 
-.write I write text! 
+@FlagClear
 
-.write-line I write a line!
+.write-line The flag is clear.
+.go-to @Prompt
 
-.write-line I can write [red]RED[/] text!
+@Prompt
 
-.write-line
+.write-line Would you like to toggle the flag?
+.confirm @DoToggle
+.go-to @SkipToggle
 
-.write-line Would you like to stop?
-.confirm @exit
-.go-to @start
+@DoToggle
 
-@exit
+.toggle-flag flag
 
+@SkipToggle
 
-.clear
+.write-line Would you like to continue?
+.confirm @start
 
 .stop

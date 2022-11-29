@@ -1,27 +1,27 @@
 ﻿Public Class DruthersScriptInterpreter
-    Private lines As New List(Of String)
-    Private currentLine As Integer
-    Private labels As New Dictionary(Of String, Integer)
-    Private flags As New HashSet(Of String)
-    Private running As Boolean
+    Private _lines As New List(Of String)
+    Private _currentLine As Integer
+    Private _labels As New Dictionary(Of String, Integer)
+    Private _flags As New HashSet(Of String)
+    Private _running As Boolean
     Public Sub New(filename As String)
-        lines.AddRange(File.ReadAllLines(filename))
-        lines = lines.Where(Function(x) Not String.IsNullOrWhiteSpace(x)).ToList
-        For index = 0 To lines.Count - 1
-            If lines(index).First = "@"c Then
-                labels(lines(index).Trim) = index
+        _lines.AddRange(File.ReadAllLines(filename))
+        _lines = _lines.Where(Function(x) Not String.IsNullOrWhiteSpace(x)).ToList
+        For index = 0 To _lines.Count - 1
+            If _lines(index).First = "@"c Then
+                _labels(_lines(index).Trim) = index
             End If
         Next
     End Sub
     Friend Sub Run()
-        currentLine = 0
-        running = True
-        While running
-            Dim line = lines(currentLine)
+        _currentLine = 0
+        _running = True
+        While _running
+            Dim line = _lines(_currentLine)
             Select Case line.First
                 Case "#"c, "@"c
                     'just keep going!
-                    currentLine += 1
+                    _currentLine += 1
                 Case "."c
                     'command!
                     HandleCommandLine(line)
@@ -43,15 +43,17 @@
     Const ConfirmCommand = ".confirm"
     Const SetFlagCommand = ".set-flag"
     Const ClearFlagCommand = ".clear-flag"
+    Const ToggleFlagCommand = ".toggle-flag"
     Const OnFlagGotoCommand = ".on-flag-go-to"
 
     Private Sub NextLine()
-        currentLine += 1
+        _currentLine += 1
     End Sub
 
     Private Sub GoToLabel(body As String)
-        currentLine = labels(body.Trim)
+        _currentLine = _labels(body.Trim)
     End Sub
+
 
     Private Sub DoCommand(command As String, body As String)
         Select Case command
@@ -65,7 +67,7 @@
                 AnsiConsole.MarkupLine(body)
                 NextLine()
             Case StopCommand
-                running = False
+                _running = False
             Case PauseCommand
                 Console.ReadKey(True)
                 NextLine()
@@ -78,18 +80,21 @@
                     NextLine()
                 End If
             Case SetFlagCommand
-                flags.Add(body.Trim)
+                Flags(body) = True
                 NextLine()
             Case ClearFlagCommand
-                flags.Remove(body.Trim)
+                Flags(body) = False
+                NextLine()
+            Case ToggleFlagCommand
+                Flags(body) = Not Flags(body)
                 NextLine()
             Case OnFlagGotoCommand
                 Dim tokens = body.Split(" "c, StringSplitOptions.RemoveEmptyEntries Or StringSplitOptions.TrimEntries)
-                If flags.Contains(tokens(1)) Then
-                    GoToLabel(tokens(2))
+                If _flags.Contains(tokens(0)) Then
+                    GoToLabel(tokens(1))
                 Else
-                    If tokens.Count > 3 Then
-                        GoToLabel(tokens(3))
+                    If tokens.Count > 2 Then
+                        GoToLabel(tokens(2))
                     Else
                         NextLine()
                     End If
@@ -104,4 +109,17 @@
         prompt.AddChoices("No", "Yes")
         Return AnsiConsole.Prompt(prompt) = "Yes"
     End Function
+
+    Property Flags(flag As String) As Boolean
+        Get
+            Return _flags.Contains(flag.Trim)
+        End Get
+        Set(value As Boolean)
+            If value Then
+                _flags.Add(flag.Trim)
+            Else
+                _flags.Remove(flag.Trim)
+            End If
+        End Set
+    End Property
 End Class
