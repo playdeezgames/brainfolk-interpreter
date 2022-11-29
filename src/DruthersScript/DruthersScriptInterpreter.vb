@@ -30,6 +30,7 @@
     Const WriteCommand = ".write"
     Const WriteLineCommand = ".write-line"
     Const StopCommand = ".stop"
+    Const PauseCommand = ".pause"
 
     Private Sub DoCommand(command As String, body As String)
         Select Case command
@@ -44,6 +45,9 @@
                 currentLine += 1
             Case StopCommand
                 running = False
+            Case PauseCommand
+                Console.ReadKey(True)
+                currentLine += 1
         End Select
     End Sub
 End Class

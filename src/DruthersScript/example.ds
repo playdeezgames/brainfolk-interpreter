@@ -1,5 +1,6 @@
 ﻿# I am a comment
 .write I write text! 
 .write-line I write a line!
+.pause
 .clear
 .stop
