@@ -1,6 +1,22 @@
-﻿# I am a comment
+﻿#I am a comment
+
+@start
+
 .write I write text! 
+
 .write-line I write a line!
-.pause
+
+.write-line I can write [red]RED[/] text!
+
+.write-line
+
+.write-line Would you like to stop?
+.confirm @exit
+.go-to @start
+
+@exit
+
+
 .clear
+
 .stop
