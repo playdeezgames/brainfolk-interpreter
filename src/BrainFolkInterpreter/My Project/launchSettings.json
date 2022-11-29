@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "BrainFolkInterpreter": {
+      "commandName": "Project",
+      "commandLineArgs": "hello.bf"
+    }
+  }
+}
