@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DruthersScript": {
+      "commandName": "Project",
+      "commandLineArgs": "example.ds"
+    }
+  }
+}

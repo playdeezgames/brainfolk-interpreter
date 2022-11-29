@@ -5,6 +5,8 @@ VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "BrainFolkInterpreter", "BrainFolkInterpreter\BrainFolkInterpreter.vbproj", "{6615AFE7-5F91-4727-A18D-02B2B1ADDDB4}"
 EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "DruthersScript", "DruthersScript\DruthersScript.vbproj", "{CEC3D1D9-E733-4AF6-B29D-9C461AC281E5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{6615AFE7-5F91-4727-A18D-02B2B1ADDDB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6615AFE7-5F91-4727-A18D-02B2B1ADDDB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6615AFE7-5F91-4727-A18D-02B2B1ADDDB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEC3D1D9-E733-4AF6-B29D-9C461AC281E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEC3D1D9-E733-4AF6-B29D-9C461AC281E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEC3D1D9-E733-4AF6-B29D-9C461AC281E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEC3D1D9-E733-4AF6-B29D-9C461AC281E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
