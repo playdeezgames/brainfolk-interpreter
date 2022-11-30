@@ -23,4 +23,9 @@
             Return _worldData.Ships(Id).XYZ
         End Get
     End Property
+    ReadOnly Property Heading As (Double, Double)
+        Get
+            Return _worldData.Ships(Id).Heading
+        End Get
+    End Property
 End Class

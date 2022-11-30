@@ -7,20 +7,21 @@ Public Class World
 
         _worldData.PlayerFellowshipId = CreateFellowship("Yer Company").Id
 
-        CreateShip("Yer Ship", PlayerFellowship, (random.NextDouble * 1000.0, random.NextDouble * 1000.0, random.NextDouble * 1000.0))
-        CreateShip("Derelict Ship", Nothing, (random.NextDouble * 1000.0, random.NextDouble * 1000.0, random.NextDouble * 1000.0))
+        CreateShip("Yer Ship", PlayerFellowship, (random.NextDouble * 1000.0, random.NextDouble * 1000.0, random.NextDouble * 1000.0), (random.NextDouble * Math.PI * 2.0 - Math.PI, random.NextDouble * Math.PI / 2.0))
+        CreateShip("Derelict Ship", Nothing, (random.NextDouble * 1000.0, random.NextDouble * 1000.0, random.NextDouble * 1000.0), (random.NextDouble * Math.PI * 2.0 - Math.PI, random.NextDouble * Math.PI / 2.0))
     End Sub
     Private Function CreateFellowship(name As String) As Fellowship
         Dim id = Guid.NewGuid
         _worldData.Fellowships.Add(id, New FellowshipData With {.Name = name})
         Return New Fellowship(_worldData, id)
     End Function
-    Private Function CreateShip(name As String, owner As Fellowship, xyz As (Double, Double, Double)) As Ship
+    Private Function CreateShip(name As String, owner As Fellowship, xyz As (Double, Double, Double), heading As (Double, Double)) As Ship
         Dim id = Guid.NewGuid
         _worldData.Ships.Add(id, New ShipData With {
                                 .Name = name,
                                 .FellowshipId = If(owner Is Nothing, Guid.Empty, owner.Id),
-                                .XYZ = xyz
+                                .XYZ = xyz,
+                                .Heading = heading
                              })
         Return New Ship(_worldData, id)
     End Function
