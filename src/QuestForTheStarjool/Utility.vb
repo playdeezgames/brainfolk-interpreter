@@ -9,4 +9,7 @@
         prompt.AddChoices(NoText, YesText)
         Return AnsiConsole.Prompt(prompt) = YesText
     End Function
+    Friend Function SanitizedStringAsk(title As String) As String
+        Return AnsiConsole.Ask(title, String.Empty).Replace("[", "[[").Replace("]", "]]")
+    End Function
 End Module
