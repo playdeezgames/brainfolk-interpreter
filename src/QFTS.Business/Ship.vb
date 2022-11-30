@@ -10,4 +10,9 @@
             Return _worldData.Ships(Id).Name
         End Get
     End Property
+    ReadOnly Property UniqueName As String
+        Get
+            Return $"{Name} (#{Id})"
+        End Get
+    End Property
 End Class

@@ -13,6 +13,8 @@
                 Case ManageFellowshipText
                     ManageFellowshipProcessor.Run(world.PlayerFellowship)
                 Case ManageShipsText
+                    ManageShipsProcessor.Run(world.PlayerFellowship)
+                Case ManageShipsText
             End Select
         Loop
     End Sub
