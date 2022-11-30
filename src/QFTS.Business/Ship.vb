@@ -5,10 +5,13 @@
         _worldData = worldData
         Me.Id = id
     End Sub
-    ReadOnly Property Name As String
+    Property Name As String
         Get
             Return _worldData.Ships(Id).Name
         End Get
+        Set(value As String)
+            _worldData.Ships(Id).Name = value
+        End Set
     End Property
     ReadOnly Property UniqueName As String
         Get
