@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "BrainFolkInterpreter", "BrainFolkInterpreter\BrainFolkInterpreter.vbproj", "{6615AFE7-5F91-4727-A18D-02B2B1ADDDB4}"
+Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "BrainFolkInterpreter", "BrainFolkInterpreter\BrainFolkInterpreter.vbproj", "{6615AFE7-5F91-4727-A18D-02B2B1ADDDB4}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "DruthersScript", "DruthersScript\DruthersScript.vbproj", "{CEC3D1D9-E733-4AF6-B29D-9C461AC281E5}"
+Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "DruthersScript", "DruthersScript\DruthersScript.vbproj", "{CEC3D1D9-E733-4AF6-B29D-9C461AC281E5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Interpreters", "Interpreters", "{BFCF5DD3-B57B-433D-9985-3911D5ADE2CF}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "QuestForTheStarjool", "QuestForTheStarjool\QuestForTheStarjool.vbproj", "{1A6895A8-6CFB-47D1-95B6-98D0715D7BBC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,9 +25,17 @@ Global
 		{CEC3D1D9-E733-4AF6-B29D-9C461AC281E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CEC3D1D9-E733-4AF6-B29D-9C461AC281E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CEC3D1D9-E733-4AF6-B29D-9C461AC281E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A6895A8-6CFB-47D1-95B6-98D0715D7BBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A6895A8-6CFB-47D1-95B6-98D0715D7BBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A6895A8-6CFB-47D1-95B6-98D0715D7BBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A6895A8-6CFB-47D1-95B6-98D0715D7BBC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6615AFE7-5F91-4727-A18D-02B2B1ADDDB4} = {BFCF5DD3-B57B-433D-9985-3911D5ADE2CF}
+		{CEC3D1D9-E733-4AF6-B29D-9C461AC281E5} = {BFCF5DD3-B57B-433D-9985-3911D5ADE2CF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {68B0C57D-9AA4-4BC1-9A58-8C69D31FB0B2}
