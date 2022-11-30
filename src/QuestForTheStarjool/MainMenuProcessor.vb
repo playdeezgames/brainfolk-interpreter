@@ -6,7 +6,9 @@
             prompt.AddChoice(QuitText)
             Select Case AnsiConsole.Prompt(prompt)
                 Case QuitText
-                    Exit Do
+                    If Confirm("[red]Are you sure you want to quit?[/]") Then
+                        Exit Do
+                    End If
             End Select
         Loop
     End Sub
