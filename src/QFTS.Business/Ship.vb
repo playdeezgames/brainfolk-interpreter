@@ -18,4 +18,9 @@
             Return $"{Name} (#{Id})"
         End Get
     End Property
+    ReadOnly Property XYZ As (Double, Double, Double)
+        Get
+            Return _worldData.Ships(Id).XYZ
+        End Get
+    End Property
 End Class

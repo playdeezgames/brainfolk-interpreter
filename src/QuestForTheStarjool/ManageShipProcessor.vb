@@ -4,6 +4,7 @@
             AnsiConsole.Clear()
             AnsiConsole.MarkupLine($"Serial#: {ship.Id}")
             AnsiConsole.MarkupLine($"Name: {ship.Name}")
+            AnsiConsole.MarkupLine($"Position: ({ship.XYZ.Item1.ToString("F")}, {ship.XYZ.Item2.ToString("F")}, {ship.XYZ.Item3.ToString("F")})")
             Dim prompt As New SelectionPrompt(Of String) With {.Title = "[olive]Now What?[/]"}
             prompt.AddChoices(DoneText, ChangeNameText)
             Select Case AnsiConsole.Prompt(prompt)
