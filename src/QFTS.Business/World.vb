@@ -5,6 +5,8 @@ Public Class World
         Dim playerFellowshipId = Guid.NewGuid
         _worldData.PlayerFellowshipId = playerFellowshipId
         _worldData.Fellowships.Add(playerFellowshipId, New FellowshipData With {.Name = "Yer Company"})
+        _worldData.Ships.Add(Guid.NewGuid, New ShipData With {.Name = "Yer Ship", .FellowshipId = playerFellowshipId})
+        _worldData.Ships.Add(Guid.NewGuid, New ShipData With {.Name = "Derelict Ship", .FellowshipId = Guid.Empty})
     End Sub
     Public ReadOnly Property PlayerFellowship As Fellowship
         Get
