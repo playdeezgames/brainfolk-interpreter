@@ -52,4 +52,9 @@
             End If
         End If
     End Sub
+    Friend Sub OnCopyFlag(interpreter As DruthersScriptInterpreter, body As String)
+        Dim tokens = body.Split(" "c, StringSplitOptions.RemoveEmptyEntries Or StringSplitOptions.TrimEntries)
+        interpreter.Flags(tokens(0)) = interpreter.Flags(tokens(1))
+        interpreter.NextLine()
+    End Sub
 End Module

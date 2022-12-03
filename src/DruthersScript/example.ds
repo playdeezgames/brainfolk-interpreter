@@ -1,5 +1,14 @@
 ﻿@start
 
+.copy-flag backup flag
+.on-flag-go-to backup @BackupSet @BackupClear
+@BackupSet
+.write-line The backup flag is set
+.go-to @FlagStatus
+@BackupClear
+.write-line The backup flag is clear
+@FlagStatus
+
 .on-flag-go-to flag @FlagSet @FlagClear
 
 @FlagSet

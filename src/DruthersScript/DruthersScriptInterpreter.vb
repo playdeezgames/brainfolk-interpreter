@@ -35,16 +35,17 @@
         DoCommand(command, body)
     End Sub
     Const ClearCommand = ".clear"
+    Const ClearFlagCommand = ".clear-flag"
+    Const CopyFlagCommand = ".copy-flag"
+    Const ConfirmCommand = ".confirm"
+    Const GoToCommand = ".go-to"
+    Const OnFlagGoToCommand = ".on-flag-go-to"
+    Const PauseCommand = ".pause"
+    Const SetFlagCommand = ".set-flag"
+    Const StopCommand = ".stop"
+    Const ToggleFlagCommand = ".toggle-flag"
     Const WriteCommand = ".write"
     Const WriteLineCommand = ".write-line"
-    Const StopCommand = ".stop"
-    Const PauseCommand = ".pause"
-    Const GoToCommand = ".go-to"
-    Const ConfirmCommand = ".confirm"
-    Const SetFlagCommand = ".set-flag"
-    Const ClearFlagCommand = ".clear-flag"
-    Const ToggleFlagCommand = ".toggle-flag"
-    Const OnFlagGoToCommand = ".on-flag-go-to"
 
     Friend Sub NextLine()
         _currentLine += 1
@@ -70,7 +71,8 @@
             {SetFlagCommand, AddressOf OnSetFlag},
             {ClearFlagCommand, AddressOf OnClearFlag},
             {ToggleFlagCommand, AddressOf OnToggleFlag},
-            {OnFlagGoToCommand, AddressOf OnOnFlagGoTo}
+            {OnFlagGoToCommand, AddressOf OnOnFlagGoTo},
+            {CopyFlagCommand, AddressOf OnCopyFlag}
         }
 
     Private Sub DoCommand(command As String, body As String)
