@@ -44,79 +44,40 @@
     Const SetFlagCommand = ".set-flag"
     Const ClearFlagCommand = ".clear-flag"
     Const ToggleFlagCommand = ".toggle-flag"
-    Const OnFlagGotoCommand = ".on-flag-go-to"
+    Const OnFlagGoToCommand = ".on-flag-go-to"
 
-    Private Sub NextLine()
+    Friend Sub NextLine()
         _currentLine += 1
     End Sub
 
-    Private Sub GoToLabel(body As String)
+    Friend Sub GoToLabel(body As String)
         _currentLine = _labels(body.Trim)
     End Sub
+    Friend Sub [Stop]()
+        _running = False
+    End Sub
 
-    Private ReadOnly _commandTable As IReadOnlyDictionary(Of String, Action(Of String)) =
-        New Dictionary(Of String, Action(Of String)) From
+    Private Shared ReadOnly _commandTable As IReadOnlyDictionary(Of String, Action(Of DruthersScriptInterpreter, String)) =
+        New Dictionary(Of String, Action(Of DruthersScriptInterpreter, String)) From
         {
-            {ClearCommand, Sub(body)
-                               AnsiConsole.Clear()
-                               NextLine()
-                           End Sub},
-            {WriteCommand, Sub(body)
-                               AnsiConsole.Markup(body)
-                               NextLine()
-                           End Sub},
-            {WriteLineCommand, Sub(body)
-                                   AnsiConsole.MarkupLine(body)
-                                   NextLine()
-                               End Sub},
-            {StopCommand, Sub(body)
-                              _running = False
-                          End Sub},
-            {PauseCommand, Sub(body)
-                               Console.ReadKey(True)
-                               NextLine()
-                           End Sub},
-            {GoToCommand, Sub(body)
-                              GoToLabel(body)
-                          End Sub},
-            {ConfirmCommand, Sub(body)
-                                 If DoConfirm() Then
-                                     GoToLabel(body)
-                                 Else
-                                     NextLine()
-                                 End If
-                             End Sub},
-            {SetFlagCommand, Sub(body)
-                                 Flags(body) = True
-                                 NextLine()
-                             End Sub},
-            {ClearFlagCommand, Sub(body)
-                                   Flags(body) = False
-                                   NextLine()
-                               End Sub},
-            {ToggleFlagCommand, Sub(body)
-                                    Flags(body) = Not Flags(body)
-                                    NextLine()
-                                End Sub},
-            {OnFlagGotoCommand, Sub(body)
-                                    Dim tokens = body.Split(" "c, StringSplitOptions.RemoveEmptyEntries Or StringSplitOptions.TrimEntries)
-                                    If _flags.Contains(tokens(0)) Then
-                                        GoToLabel(tokens(1))
-                                    Else
-                                        If tokens.Count > 2 Then
-                                            GoToLabel(tokens(2))
-                                        Else
-                                            NextLine()
-                                        End If
-                                    End If
-                                End Sub}
+            {ClearCommand, AddressOf OnClear},
+            {WriteCommand, AddressOf OnWrite},
+            {WriteLineCommand, AddressOf OnWriteLine},
+            {StopCommand, AddressOf OnStop},
+            {PauseCommand, AddressOf OnPause},
+            {GoToCommand, AddressOf OnGoTo},
+            {ConfirmCommand, AddressOf OnConfirm},
+            {SetFlagCommand, AddressOf OnSetFlag},
+            {ClearFlagCommand, AddressOf OnClearFlag},
+            {ToggleFlagCommand, AddressOf OnToggleFlag},
+            {OnFlagGoToCommand, AddressOf OnOnFlagGoTo}
         }
 
     Private Sub DoCommand(command As String, body As String)
-        _commandTable(command)(body)
+        _commandTable(command)(Me, body)
     End Sub
 
-    Private Function DoConfirm() As Boolean
+    Friend Function DoConfirm() As Boolean
         Dim prompt As New SelectionPrompt(Of String)
         prompt.AddChoices("No", "Yes")
         Return AnsiConsole.Prompt(prompt) = "Yes"

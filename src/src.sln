@@ -9,11 +9,10 @@ Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "DruthersScript", "DruthersS
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Interpreters", "Interpreters", "{BFCF5DD3-B57B-433D-9985-3911D5ADE2CF}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "QuestForTheStarjool", "QuestForTheStarjool\QuestForTheStarjool.vbproj", "{1A6895A8-6CFB-47D1-95B6-98D0715D7BBC}"
-EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "QFTS.Business", "QFTS.Business\QFTS.Business.vbproj", "{6127F371-2689-48D0-A042-713E1DF8F2D6}"
-EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "QFTS.Data", "QFTS.Data\QFTS.Data.vbproj", "{39198B42-EA07-4B24-83DF-36AE5B166B16}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_STUFF", "_STUFF", "{B7BE7446-DEB0-4755-BDEF-8C512B2121E1}"
+	ProjectSection(SolutionItems) = preProject
+		DruthersScript\dscommands.md = DruthersScript\dscommands.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,18 +28,6 @@ Global
 		{CEC3D1D9-E733-4AF6-B29D-9C461AC281E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CEC3D1D9-E733-4AF6-B29D-9C461AC281E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CEC3D1D9-E733-4AF6-B29D-9C461AC281E5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1A6895A8-6CFB-47D1-95B6-98D0715D7BBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1A6895A8-6CFB-47D1-95B6-98D0715D7BBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1A6895A8-6CFB-47D1-95B6-98D0715D7BBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1A6895A8-6CFB-47D1-95B6-98D0715D7BBC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6127F371-2689-48D0-A042-713E1DF8F2D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6127F371-2689-48D0-A042-713E1DF8F2D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6127F371-2689-48D0-A042-713E1DF8F2D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6127F371-2689-48D0-A042-713E1DF8F2D6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{39198B42-EA07-4B24-83DF-36AE5B166B16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{39198B42-EA07-4B24-83DF-36AE5B166B16}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{39198B42-EA07-4B24-83DF-36AE5B166B16}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{39198B42-EA07-4B24-83DF-36AE5B166B16}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
